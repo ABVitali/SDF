@@ -1,0 +1,39 @@
+\documentclass{beamer}
+\usetheme{Ilmenau}
+%\usepackage{mathptm}
+\usepackage[utf8]{inputenc}
+
+
+%Information to be included in the title page:
+\title{About Simple Signed Graphs}
+\author{Baldi Vitali, Calbi and Vasquez}
+\institute{Université de Nice Sophia-Antipolis}
+\date{February 2018}
+
+
+\begin{document}	
+\frame{\titlepage}
+
+\begin{frame}
+\begin{definition}[$\bar{x}^i$]
+	Let $f:\{0,1\}^n \rightarrow \{0,1\}^n$ a boolean network of $n$ components. If $x \in \{0,1\}^n$ and $i \in [n]$ then $\bar{x}^i \in \{0,1\}^n$ refers to the point that differs from $x$ only in the $i$-th component, i.e.
+	\[
+	\bar{x}^i = (x_1, \dots, x_{j-i}, \bar{x}_j, x_{j+1}, \dots, x_n)
+	\]
+\end{definition}
+\begin{definition}[Simple Signed Graphs]
+	A boolean network $f$ is \textit{signed} if $\forall i,j \in [n]$ $\nexists x,y \in \{0,1\}^n$ with $x_j = y_j$ such that 
+	\[
+	f_i(x) = f_i(\bar{y}^j) < f_i(\bar{x}^j) = f_i(y)
+	\]
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
+\begin{frame}
+\frametitle{State of art}
+This is a text in first frame. This is a text in first frame. This is a text in first frame.
+\end{frame}
+\end{document}
