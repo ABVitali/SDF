@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 
 
+
 %Information to be included in the title page:
 \title{About Simple Signed Graphs}
 \author{Baldi Vitali, Calbi and Vasquez}
@@ -14,16 +15,53 @@
 \begin{document}	
 \frame{\titlepage}
 
-\begin{section}{}
+\begin{section}{Background}
 
-\end{section}
+\begin{frame}{Background}
+    \begin{definition}[Finite dynamical system]
+        Let $f:X \to X$ be a function with $X=\Pi_{i=1}^n X_i,$ i.e. the product of $n$ finite intervals of integers, then $f$ is called a \textit{finite dynamical system}. Therefore for any $x = (x_1, x_2, \dots, x_n)$
+        \[
+        x \in X \Rightarrow f(x) = (f_1(x), f_2(x), \dots, f_n(x)) \in X
+        \]
+        $f$ and $f_i$ are called \textit{global} and \textit{local transition function} respectively.
+    \end{definition}
+    
+    \begin{definition}[Boolean network]
+        Let $f:X \to X$ be a finite dynamical system, if $X=\{0,1\}^n$ then $f$ is called \textit{boolean network}.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Background cont'd}
+    \begin{definition}[$\bar{x}^i$]
+    	Let $f:\{0,1\}^n \rightarrow \{0,1\}^n$ a boolean network of $n$ components. If $x \in \{0,1\}^n$ and $i \in [n]$ then $\bar{x}^i \in \{0,1\}^n$ refers to the point that differs from $x$ only in the $i$-th component, i.e.
+    	\[
+    	\bar{x}^i = (x_1, \dots, x_{j-i}, \bar{x}_j, x_{j+1}, \dots, x_n)
+    	\]
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Background cont'd}
+    \begin{definition}[Interaction graph]
+        Let $f : X \to X$ be a boolean network, $G(f)$ denotes the \textit{interaction graph} of $f$ that is $G=(V,E) : V = [n], E = \{ (j,i) \in V \times V : f_i$ depends on component j$\}$, i.e. there exists an edge from $j$ to $i$ in $G$ if $\exists x,y \in X$ such that $x = \bar{y}^j$ and $f_i(x) \neq f_i(y)$.
+    \end{definition}
+    
+    \begin{definition}[Signed Graph]
+        A \textit{signed graph} is a graph $G=(V,E) : E \subseteq V \times V \times \{-1,1\}.$
+    \end{definition}
+
+\end{frame}
 \begin{frame}
-\begin{definition}[$\bar{x}^i$]
-	Let $f:\{0,1\}^n \rightarrow \{0,1\}^n$ a boolean network of $n$ components. If $x \in \{0,1\}^n$ and $i \in [n]$ then $\bar{x}^i \in \{0,1\}^n$ refers to the point that differs from $x$ only in the $i$-th component, i.e.
-	\[
-	\bar{x}^i = (x_1, \dots, x_{j-i}, \bar{x}_j, x_{j+1}, \dots, x_n)
-	\]
-\end{definition}
+    \begin{definition}[Interaction signed graph]
+        Let $G=(V,E)$ be an interaction graph, where
+        \[
+        E = \{(j,i,s) \in V \times V \times \{-1,1\}\ |\ \exists x \in \{0,1\}^n : \]\[
+        f_i(x_1,..,x_{j-1}, 1,..,x_n)-f_i(x_1,..,x_{j-1}, 0,..,x_n)=s \}
+        \]
+        then $G$ is called \textit{interaction signed graph}.
+    \end{definition}
+\end{frame}
+
+\begin{frame}
 \begin{definition}[Simple Signed Graphs]
 	A boolean network $f$ is \textit{signed} if $\forall i,j \in [n]$ $\nexists x,y \in \{0,1\}^n$ with $x_j = y_j$ such that 
 	\[
@@ -32,8 +70,7 @@
 \end{definition}
 \end{frame}
 
-\begin{frame}
-\end{frame}
+\end{section}
 
 \begin{frame}
 \frametitle{State of art}
