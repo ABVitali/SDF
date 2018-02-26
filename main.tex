@@ -1,5 +1,5 @@
 \documentclass{beamer}
-\usetheme{Ilmenau}
+\usetheme{Warsaw}
 %\usepackage{mathptm}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -34,15 +34,14 @@
 \author{Baldi Vitali, Calbi and Vasquez}
 \institute{Université Nice Sophia-Antipolis}
 \date{February 2018}
-
+\pgfplotsset{compat=1.15} 
 
 \begin{document}	
 \frame{\titlepage}
 
-\begin{section}{Background}
-
 \begin{frame}{Background}
     \begin{definition}[Finite dynamical system]
+    \justifying
         Let $f:X \to X$ be a function with $X=\Pi_{i=1}^n X_i,$ i.e. the product of $n$ finite intervals of integers, then $f$ is called a \textit{finite dynamical system}. Therefore for any $x = (x_1, x_2, \dots, x_n)$
         \[
         x \in X \Rightarrow f(x) = (f_1(x), f_2(x), \dots, f_n(x)) \in X
@@ -51,11 +50,13 @@
     \end{definition}
     
     \begin{definition}[Boolean network]
+    \justifying
         Let $f:X \to X$ be a finite dynamical system. If $X=\{0,1\}^n,$ then $f$ is called \textit{boolean network}.
     \end{definition}
 \end{frame}
 
-\begin{frame}{Fundamental definition}
+\begin{frame}{Background cont'd}
+\justifying
     \begin{definition}[$\bar{x}^i$]
     	Let $f:\{0,1\}^n \rightarrow \{0,1\}^n$ a boolean network of $n$ components. If $x \in \{0,1\}^n$ and $i \in [n]$ then $\bar{x}^i \in \{0,1\}^n$ refers to the point that differs from $x$ only in the $i$-th component, i.e.
     	\[
@@ -65,6 +66,7 @@
 \end{frame}
 
 \begin{frame}{Background cont'd}
+\justifying
     \begin{definition}[Interaction graph]
         Let $f : X \to X$ be a boolean network, $G(f)$ denotes the \textit{interaction graph} of $f$ that is $G=(V,E) : V = [n], E = \{ (j,i) \in V \times V : f_i$ depends on component j$\}$, i.e. there exists an edge from $j$ to $i$ in $G$ if $\exists x,y \in X$ such that $x = \bar{y}^j$ and $f_i(x) \neq f_i(y)$.
     \end{definition}
@@ -72,8 +74,9 @@
         Let $G=(V,E)$ be a digraph with $V=[n].\ F(G)$ is the set of boolean networks s.t. $G(f)=G.$
     \end{definition}
 \end{frame}
-\begin{frame}
-    
+
+\begin{frame}{Background cont'd}
+    \justifying
     \begin{definition}[Signed Graph]
         A \textit{signed graph} is a graph $G=(V,E) : E \subseteq V \times V \times \{-1,+1\}.$
     \end{definition}
@@ -87,8 +90,10 @@
     \end{definition}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Background cont'd}
+\justifying
 \begin{definition}[Simple Signed Boolean Network]
+    \justifying
 	A boolean network $f$ is \textit{simple signed} if $\forall i,j \in [n]$ $\nexists x,y \in \{0,1\}^n$ with $x_j = y_j$ such that 
 	\[
 	f_i(x) = f_i(\bar{y}^j) < f_i(\bar{x}^j) = f_i(y)
@@ -98,6 +103,7 @@
 \end{frame}
 
 \begin{frame}{Metrics in dynamical finite systems}
+\justifying
 Let $x,y \in \{0,1\}^n$.
     \begin{definition}[Symmetric Difference]
         The \textit{symmetric difference} between $x$ and $y$ is
@@ -116,7 +122,8 @@ Let $x,y \in \{0,1\}^n$.
     \end{definition}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Loopless Boolean Networks}
+\justifying
     \begin{definition}[Loopless $f$]
     We say that $f$ is \textit{loopless} if its interaction graph has no loop where a loop is en edge leaving and entering the same vertex.
     \end{definition}
@@ -128,10 +135,10 @@ Let $x,y \in \{0,1\}^n$.
     \end{definition}
 \end{frame}
 
-\end{section}
 
 \begin{frame}{Conjecture}
 \begin{conjecture}
+\justifying
 If $f$ is a simple signed boolean network with $n$ components and without loops, then $f$ has at most $\binom{n}{\floor{\frac{n}{2}}}$ fixed points, i.e. 
 \[
 max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\frac{n}{2}}}.
@@ -139,8 +146,8 @@ max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\fra
 \end{conjecture}
 \end{frame}
 
-\begin{section}{Basic Definitions}
 \begin{frame}{Signed Graph}
+\justifying
     \begin{definition}[Complete Graph $K_n$]
     \justifying
     A \textit{complete digraph} is a graph such that each couple of distinct vertices are connected by an edge. i.e. 
@@ -162,7 +169,7 @@ max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\fra
     
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Partial Order Relation}
     \justifying
     \begin{definition}[Incoming neighbor]
         \justifying
@@ -177,10 +184,10 @@ max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\fra
     \end{definition}
 \end{frame}
 
-\begin{frame}{blablaFrame}
+\begin{frame}{$\max{K_n^-}$}
+\justifying
     \begin{theorem}[Upper bound of $K_n^-$]
-    for each $n > 0$ :
-    $\max(K_n^-) = \binom{n}{\floor{\frac{n}{2}}}$
+    $\forall n>0,\ \max(K_n^-) = \binom{n}{\floor{\frac{n}{2}}}$
     \end{theorem}
     
     \begin{lemma}[Sperner 1928]
@@ -188,8 +195,9 @@ max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\fra
     \end{lemma}
 \end{frame}
 
-\begin{frame}{blablaFrame}
-    \begin{proof}
+\begin{frame}{Upper bound of $K_n^-$, Proof part 1}
+\justifying
+    \begin{block}
     \justifying
     Let $X \subseteq \{0, 1\}^n$. Let $\leq_i$ for all $i \in [n]$  denote the \textit{partial order relation} for each component. So the partial is:
         $x \leq y$ iff $x_i \leq y_i$
@@ -197,12 +205,12 @@ max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\fra
     We define \textit{chain of $X$} the set $C \subseteq X$ such that $x \leq y$ or $y \leq x$ for each $x, y \in X$.
     We define \textit{antichain of $X$} the set $A \subseteq X$ such that $x \nleq y$ and $y \nleq x$ for each $x, y \in X$ with $x \neq y$.
     We denote with $0$ the configuration of $\{0,1\}^n$ that is made only by zeros and with $1$ the configuration made only by ones.
-    \end{proof}
+    \end{block}
 \end{frame}
 
-\begin{frame}
-    
-    \begin{block}{Proof part 1}
+\begin{frame}{Proof cont'd}
+    \justifying
+    \begin{block}{Proof part 2}
     We denote $A_k$ the elements of $A$ of hamming weight equal to $k$. i.e. the elements $x \in A$ have $k$ components with value $1$.
     
     
@@ -217,14 +225,15 @@ max(G) := \max_{f \in F(G)} |\text{\textsc{Fixe}}(f)| \leq \binom{n}{\floor{\fra
     Let $f \in F(K_n^-)$ and $i \in [n]$. Because all the edges are negative and because all the vertices, except i, are predecessor of i, we have: 
     
     \[
-    x \leq_i y \text{ iff } x_j \geq y_j \forall j \neq i.
+    x \leq_i y \text{ iff } x_j \geq y_j \text{ } \forall j \neq i.
     \]
     
     \end{block}
 \end{frame}
 
-\begin{frame}
-\begin{block}{Proof part 2}
+\begin{frame}{Proof cont'd}
+\justifying
+\begin{block}{Proof part 3}
 If $x \geq y$ then $x \leq_i y$ $ \forall i$ so $f_i(x) \leq f_i(y)$ $ \forall i$. It follows that $f(x) \leq f(y)$. i.e.
 
 \[
@@ -241,8 +250,9 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
 \end{block}
 \end{frame}
 
-\begin{frame}
-\begin{block}{Proof part 3}
+\begin{frame}{Proof cont'd}
+\justifying
+\begin{block}{Proof part 4}
     The limit is always reached. Let f be the boolean network of n component defined like this:
     \[
         \forall x \in \{0,1\}^n \text{ and } i \in [n]
@@ -262,7 +272,8 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Proof cont'd}
+\justifying
 \begin{block} {Proof part 4}
     So we have $f_i(x) = x_i$ and $x$ is a fixed point. We can conclude that f has at least $\binom{n}{\floor{\frac{n}{2}}}$ fixed points.
     
@@ -283,6 +294,7 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     
 
 \begin{frame}
+\justifying
     \begin{theorem}[$\max(K_n^+)$]
         For all $n$ positive integers holds 
         \[
@@ -291,9 +303,9 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
         \]
     \end{theorem}
 \end{frame}
-\end{section}
 
 \begin{frame}{Some bounds for $\textsc{Fixe}(G)$}
+\justifying
     \begin{theorem}[Aracena 2008]
         Let $G$ be a signed graph, then hold the following statements:
         \begin{enumerate}
@@ -307,13 +319,6 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
             \quad $\Rightarrow min(G) \geq 1$.
         \end{enumerate}
     \end{theorem}
-\end{frame}
-
-\begin{frame}{Intuition}
-    We will now proceed by 
-    \begin{enumerate}
-        \item 
-    \end{enumerate}
 \end{frame}
 
 \begin{frame}{$G_\emptyset$}
@@ -335,7 +340,9 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     $f_i(x) = c_i$ with $c_i \in \{0,1\}$, thus $\forall x \in \{0,1\}^n,\ f(x) = (c_1, c_2, \dots, c_n)$; the only fixed point is $x = (c_1, c_2, \dots, c_n)$.
 \end{frame}
 
+
 \begin{frame}{$G_\emptyset$ example}
+\justifying
     \begin{example}
         \vspace{-1em}
         \begin{columns}
@@ -370,7 +377,73 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     \end{example}
 \end{frame}
 
+
+\begin{frame}{FVS}
+    \begin{definition}
+    \justifying
+        Given a graph $G=(V,E),$ the \textit{Feedback Vertex Set} is the set $I \in V$ s.t. $G \setminus I$ is acyclic. We then denote $\tau$ the minimum size for a FVS in $G$. $\tau^+$ is the minimal size for a positive $FVS$, i.e. the set $I \in V$ s.t. $G \setminus I$ has no positive cycle.
+    \end{definition}
+    
+    \begin{definition}
+        \justifying
+        Let $X \subseteq \{0,1\}^n$. $A(n,d)$ is the \textit{maximum size of a code} $X$ whose minimal distance is at least $d$, i.e. the minimum of $d(x,y),\ \forall x,y \in X : x\neq y.$ We define $g$ the minimal size of a cycle in a graph $G,$ and $g^+$ the minimal size of a positive cycle in a signed graph. 
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Cyclic graph}
+    \justifying
+    Let's consider the case for $G \in C_n,$ which are a particular case of graphs with $n-1$ edges, where $n$ is the number of vertices. Let's start for example with the graphs $C_5^-$ and $C_6^-.$ The following theorem will be useful.
+    \begin{theorem}[Positive  Feedback’s Upper Bound]
+    For all signed graph $G,$ 
+    \[
+        \max(G) \leq 2^{\tau^+}.
+    \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Representation of $C_5^{-}$ and $C_6^{-}$}
+\justifying
+    \begin{figure}
+    	\centering
+    	\subfigure[$C_5^{-}$]{\label{fig:c}\includegraphics[width=0.45\textwidth]{images/allnegativeC5.eps}}
+    	\ \ \ \ 
+    	\subfigure[$C_6^{-}$]{\label{fig:d}\includegraphics[width=0.45\textwidth]{images/allnegativeC6.eps}}
+    	\label{fig:comparison2}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Max of $C_5^{-}$ and $C_6^{-}$}
+\justifying
+    Because of the positive feedback's bound theorem, we know that $\max(G)\leq 2^{\tau^+}$. In both cases, $\tau^+=1$. Moreover, for Aracena's theorem (2008) 
+    $C_5^{-}$ doesn't have any fixed point and $C_6^{-}$ has at least two fixed points. Thus
+    
+    
+    \[
+        max(C_5^{-}) = 0,
+    \]
+    
+    
+    \[
+        max(C_6^{-}) \leq 2 \land max(C_6^{-}) \geq 2 \Rightarrow max(C_6^{-}) = 2.
+    \]
+    
+    
+\end{frame}
+
+\begin{frame}{Generalization for $C_n$}
+    \justifying
+    If we consider any $C^+$ and $C^-$ graph, by following the same reasoning as before, we have that $\max(G)\leq 2^{\tau^+}, \forall G \in C_n.$ Then we can consider the following cases:
+    \begin{itemize}
+        \justifying
+        \item if $G \in C_n^-$ with $n$ odd, then $\max(G)=0$ for Aracena's theorem 
+        \item if $ G \in C_n^-$ with $n$ even or $G \in C_n^+$, then, knowing that $min(G) \geq 2 \land max(G) \leq 2$ we can deduce that $max(G)=2.$
+    \end{itemize}
+    
+    We can conclude that for any cycle graph the number of fixed points is always below the bound $\binom{n}{\floor{\frac{n}{2}}}.$
+\end{frame}
+
 \begin{frame}{$max(K_n^+) \lesseqgtr max(K_n^-)$?}
+\justifying
     If we compare $\phi = \binom{n}{\floor{\frac{n}{2}}}$ and $\xi =\frac{2^{n+1}}{n+2},$ for $n \in \mathbb{N}^+:$
     \small{
     \begin{table}
@@ -393,20 +466,20 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
 \end{frame}
 
 \begin{frame}{Intuition}
+\justifying
     Since Richard et al have proved that 
     \begin{itemize}
         \item $\max(K_n^+) \leq \frac{2^{n+1}}{n+2},$
         \item $\max(K_n^-) = \binom{n}{\floor{\frac{n}{2}}},$
     \end{itemize}
-    and since $\forall n\geq 4,\ \frac{2^{n+1}}{n+2} \leq \binom{n}{\floor{\frac{n}{2}}},$ we can deduce that
+    and since $\forall n\geq 4,\ \frac{2^{n+1}}{n+2} \leq \binom{n}{\floor{\frac{n}{2}}},$ we can assert that
     \begin{equation}
         \label{eq:maxKorder}
         \forall n\geq 4,\ \max{K_n^+} \leq \max{K_n^-}.
     \end{equation}
 \end{frame}
 
-
-\begin{frame}{Frame Title}
+\begin{frame}{Intuition for $max(K_n)$}
     \justifying
     \begin{exampleblock}{Intuition}
         For all complete signed graph $K_n$, $max(K_n) \leq max(K_n^-)$.
@@ -423,7 +496,8 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     \]
 \end{frame}
 
-\begin{frame}{Frame Title}
+\begin{frame}{Intuition for $max(K_n)$ cont'd}
+\justifying
     and so on build $G^{(2)}$, then $G^{(3)}$, $\dots$
     \begin{alignat*}{3}
         max(G^{(2)}) &\leq max(G^{(0)}) &&= max(K_n^-)\\
@@ -438,24 +512,13 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     that is supported by Inequality \ref{eq:maxKorder}.
 \end{frame}
 
-\begin{frame}
-
-\end{frame}
-
-\begin{frame}{Frame Title}
+\begin{frame}{Example to Support the Intuition for $max(K_n)$}
     \justifying
     Now we are going to support this intuition through an example for $n=4$.
     \[
         max(G^{(0)}) = max(K_n^-) = \binom{n}{\floor{\frac{n}{2}}} = \binom{4}{2} = \frac{4!}{2!2!} = \frac{24}{4} = 6.
     \]
     
-\end{frame}
-
-\begin{frame}
-    \begin{definition}
-        \justifying
-        Let $X \subseteq \{0,1\}^n$. $A(n,d)$ is the \textit{maximum size of a code} $X$ whose minimal distance is at least $d$, i.e. the minimum of $d(x,y) \forall x,y \in X, x\neq y.$ We define $g$ the minimal size of a cycle in a graph $G,$ and $g^+$ the minimal size of a positive cycle in a signed graph. 
-    \end{definition}
 \end{frame}
 
 \begin{frame}{Frame Title}
@@ -472,6 +535,7 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
 \end{frame}
 
 \begin{frame}{Frame Title}
+\justifying
     For $n=4$ we have
     \vspace{-0.5em}
     \begin{alignat*}{3}
@@ -495,31 +559,7 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     \end{figure}
 \end{frame}
 
-\begin{frame}{Cyclic graph}
-    Let's consider the case for $G \in C_n,$ which are a particular case of graphs with $n-1$ edges, where $n$ is the number of vertices. If we consider the cases $C^+$ and $C^-$, considering the fact that a graph contains only one cycle, we can consider the following:
-    \begin{itemize}
-        \item $C_n^-$ with $n$ odd, then $\max{C_n^-}=0$ for Aracena's theorem 
-        \item $C_n^-$ with $n$ even and $C_n^+$, consisting in a single positif cycle, and knowing that $max(G) \leq 2^{\tau^+}, \forall $
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Representation of $C_5^{-}$ and $C_6^{-}$}
-    \begin{figure}
-    	\centering
-    	\subfigure[p][$C_5^{-}$]{\label{fig:a}\includegraphics[width=0.45\textwidth]{images/allnegativeC5.eps}}
-    	\ \ \ \ 
-    	\subfigure[$C_6^{-}$]{\label{fig:b}\includegraphics[width=0.45\textwidth]{images/allnegativeC6.eps}}
-    	\label{fig:comparison}
-    \end{figure}
-\end{frame}
-
-\begin{frame}{Intuition for C_5^- and C_6^-}
-    Because of Aracena we can surely say that $C_5^{-}$ doesn't have any fixed point: indeed we know that this graph has only one cycle and its sign is negative.
-    For $C_6^{-}$ we know that the unique cycle is positive and the minimum number of fixed point is 2. We also know that $\tau^+$ is equal to one and because of the theorem of the 
-    
-\end{frame}
-
-\begin{frame}
+\begin{frame}{Deduction}
     \justifying
     For each $n \geq 4$ we define the discrete function
     \[
@@ -533,23 +573,44 @@ Suppose that there exist two distinct comparable fixed points $x$ and $y$. If $x
     that returns the maximum number of fixed points a graph of $n$ vertices and $x$ edges can have.
 \end{frame}
 
-
-\begin{frame}{}
+\begin{frame}{Deduction cont'd}
     \begin{block}{Domain of $\psi_n$}
         \justifying
         Let's consider the complete (directed) graph $K_n$, $|E(K_n)| = n(n-1)$, obviously for any directed graph $G$ with $n$ vertices, $n(n-1)$ is an upper bound for $|E|$, therefore there doesn't exist a digraph with $n$ vertices and more than $n(n-1)$ edges. That explains the domain of $\psi_n$.
     \end{block}
     
-    \begin{block}
-        
+    \begin{block}{Codomain of $\psi_n$}
+    \justifying
+        Asserting $C(\psi_n) = [\phi]$ coincides with the Conjecture.
     \end{block}
-    
-    
-    
-    
 \end{frame}
 
+\begin{frame}{Deduction cont'd}
+    \justifying
+    We showed that:
+    \begin{itemize}
+        \justifying
+        \item for $x=n(n-1)$, $\psi_n(x) = \phi$ (demonstrated for $n=4$ and generalized through an intuition to all $n$);
+        \item $\forall n \geq 1$, $x=0$, $\psi_n(x) = 1$,;
+        \item $\forall n \geq $, $\psi_n(x) \geq 2$; 
+    \end{itemize}
+    Although emerges clear that for a graph $G=(V,E)$, $max(G)$ is not directly related to $|E|$, we formed the impression that loss of edges for $G$ is not supposed to lead to a gain in fixed points amount, hence we are lead to believe that
+    \[
+    \argmax_{\forall x \in [n(n-1)]} \{ \psi_n(x) \} = n(n-1)
+    \]
+\end{frame}
 
-
-
+\begin{frame}{Deduction cont'd}
+    \justifying
+    Considering what we said about complete signed graphs we are also lead to believe that for all sign labellings for $K_n$, we have always
+    \[
+        max(K_n) \leq max(K_n^-) = \phi
+    \]
+    therefore
+    
+    \begin{alertblock}{Deduction}
+        \justifying
+        $\phi = \binom{n}{\floor{\frac{n}{2}}}$ is an upper bound for the number of fixed points in any signed graph with $n$ vertices.
+    \end{alertblock}
+\end{frame}
 \end{document}
